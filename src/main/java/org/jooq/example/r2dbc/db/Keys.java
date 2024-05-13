@@ -6,8 +6,8 @@ package org.jooq.example.r2dbc.db;
 
 import org.jooq.TableField;
 import org.jooq.UniqueKey;
-import org.jooq.example.r2dbc.db.tables.Author;
-import org.jooq.example.r2dbc.db.tables.records.AuthorRecord;
+import org.jooq.example.r2dbc.db.tables.Entity;
+import org.jooq.example.r2dbc.db.tables.records.EntityRecord;
 import org.jooq.impl.DSL;
 import org.jooq.impl.Internal;
 
@@ -23,5 +23,5 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final UniqueKey<AuthorRecord> KEY_AUTHOR_PRIMARY = Internal.createUniqueKey(Author.AUTHOR, DSL.name("KEY_author_PRIMARY"), new TableField[] { Author.AUTHOR.ID }, true);
+    public static final UniqueKey<EntityRecord> KEY_ENTITY_PRIMARY = Internal.createUniqueKey(Entity.ENTITY, DSL.name("KEY_entity_PRIMARY"), new TableField[] { Entity.ENTITY.ID }, true);
 }

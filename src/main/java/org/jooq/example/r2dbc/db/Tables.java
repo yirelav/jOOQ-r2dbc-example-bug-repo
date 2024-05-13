@@ -4,7 +4,7 @@
 package org.jooq.example.r2dbc.db;
 
 
-import org.jooq.example.r2dbc.db.tables.Author;
+import org.jooq.example.r2dbc.db.tables.Entity;
 
 
 /**
@@ -14,7 +14,7 @@ import org.jooq.example.r2dbc.db.tables.Author;
 public class Tables {
 
     /**
-     * The table <code>test_schema.author</code>.
+     * The table <code>test_schema.entity</code>.
      */
-    public static final Author AUTHOR = Author.AUTHOR;
+    public static final Entity ENTITY = Entity.ENTITY;
 }

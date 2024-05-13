@@ -55,6 +55,16 @@
                                     </properties>
 
                                     <inputSchema>test_schema</inputSchema>
+<!--                                    <forcedTypes>-->
+<!--                                        <forcedType>-->
+<!--                                            &lt;!&ndash; Specify any data type that is supported in your database, or if unsupported,-->
+<!--                                                 a type from org.jooq.impl.SQLDataType &ndash;&gt;-->
+<!--                                            <name>BOOLEAN</name>-->
+
+<!--                                            &lt;!&ndash; A Java regex matching fully-qualified columns, attributes, parameters. Use the pipe to separate several expressions. &ndash;&gt;-->
+<!--                                            <includeExpression>.*\.(deleted_tinyint)</includeExpression>-->
+<!--                                        </forcedType>-->
+<!--                                    </forcedTypes>-->
                                 </database>
                                 <target>
                                     <packageName>org.jooq.example.r2dbc.db</packageName>

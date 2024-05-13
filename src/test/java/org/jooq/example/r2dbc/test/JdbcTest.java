@@ -1,9 +1,7 @@
 package org.jooq.example.r2dbc.test;
 
 import org.jooq.DSLContext;
-import org.jooq.Record1;
 import org.jooq.SQLDialect;
-import org.jooq.Source;
 import org.jooq.impl.DSL;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,8 +12,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import static org.jooq.example.r2dbc.db.Tables.AUTHOR;
+import static org.jooq.example.r2dbc.db.Tables.ENTITY;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class JdbcTest {
 
@@ -40,21 +39,31 @@ public class JdbcTest {
             throw new RuntimeException(e);
         }
 
-        ctx.deleteFrom(AUTHOR).execute();
-        ctx.insertInto(AUTHOR)
+        ctx.deleteFrom(ENTITY).execute();
+        ctx.insertInto(ENTITY)
                 .defaultValues()
                 .execute();
     }
 
     @Test
-    public void test() {
-        Record1<Byte> fetched = ctx
-                .select(AUTHOR.DELETED)
-                .from(AUTHOR)
+    public void test_tinyint() {
+        var fetched = ctx
+                .selectFrom(ENTITY)
                 .fetchOne();
 
         log.info("fetched: \n{}", fetched);
 
-        assertEquals(false, fetched.value1() != 0);
+        assertFalse(fetched.get(ENTITY.DELETED_TINYINT) != 0);
+    }
+
+    @Test
+    public void test_bit() {
+        var fetched = ctx
+                .selectFrom(ENTITY)
+                .fetchOne();
+
+        log.info("fetched: \n{}", fetched);
+
+        assertEquals(false, fetched.get(ENTITY.DELETED_BIT));
     }
 }

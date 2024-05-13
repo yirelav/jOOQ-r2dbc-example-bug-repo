@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.jooq.Catalog;
 import org.jooq.Table;
-import org.jooq.example.r2dbc.db.tables.Author;
+import org.jooq.example.r2dbc.db.tables.Entity;
 import org.jooq.impl.SchemaImpl;
 
 
@@ -27,9 +27,9 @@ public class TestSchema extends SchemaImpl {
     public static final TestSchema TEST_SCHEMA = new TestSchema();
 
     /**
-     * The table <code>test_schema.author</code>.
+     * The table <code>test_schema.entity</code>.
      */
-    public final Author AUTHOR = Author.AUTHOR;
+    public final Entity ENTITY = Entity.ENTITY;
 
     /**
      * No further instances allowed
@@ -47,7 +47,7 @@ public class TestSchema extends SchemaImpl {
     @Override
     public final List<Table<?>> getTables() {
         return Arrays.asList(
-            Author.AUTHOR
+            Entity.ENTITY
         );
     }
 }

@@ -4,14 +4,14 @@ import io.r2dbc.spi.ConnectionFactories;
 import io.r2dbc.spi.ConnectionFactory;
 import io.r2dbc.spi.ConnectionFactoryOptions;
 import org.jooq.DSLContext;
-import org.jooq.Record1;
 import org.jooq.impl.DSL;
 import org.junit.Before;
 import org.junit.Test;
 import reactor.core.publisher.Flux;
 
-import static org.jooq.example.r2dbc.db.Tables.AUTHOR;
+import static org.jooq.example.r2dbc.db.Tables.ENTITY;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class R2dbcTest {
 
@@ -30,19 +30,26 @@ public class R2dbcTest {
 
         ctx = DSL.using(connectionFactory);
 
-        Flux
-                .from(ctx.deleteFrom(AUTHOR))
-                .thenMany(ctx.insertInto(AUTHOR).defaultValues())
+        Flux.from(ctx.deleteFrom(ENTITY))
+                .thenMany(ctx.insertInto(ENTITY).defaultValues())
                 .blockFirst();
     }
 
     @Test
-    public void test() {
-        Record1<Byte> fetched = Flux
-                .from(ctx.select(AUTHOR.DELETED).from(AUTHOR))
+    public void test_tinyint() {
+        var fetched = Flux.from(ctx.selectFrom(ENTITY))
                 .log()
                 .blockFirst();
 
-        assertEquals(false, fetched.value1() != 0);
+        assertFalse(fetched.get(ENTITY.DELETED_TINYINT) != 0);
+    }
+
+    @Test
+    public void test_bit() {
+        var fetched = Flux.from(ctx.selectFrom(ENTITY))
+                .log()
+                .blockFirst();
+
+        assertEquals(false, fetched.get(ENTITY.DELETED_BIT));
     }
 }

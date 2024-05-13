@@ -1,7 +1,8 @@
-CREATE TABLE author
+CREATE TABLE entity
 (
-    id      INT     NOT NULL AUTO_INCREMENT,
-    deleted boolean NOT NULL DEFAULT false,
+    id              INT        NOT NULL AUTO_INCREMENT,
+    deleted_tinyint tinyint(1) NOT NULL DEFAULT false,
+    deleted_bit     bit(1)     NOT NULL DEFAULT 0,
 
-    CONSTRAINT pk_author PRIMARY KEY (id)
+    CONSTRAINT pk_entity PRIMARY KEY (id)
 );

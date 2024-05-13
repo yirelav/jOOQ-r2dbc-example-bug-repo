@@ -1,0 +1,8 @@
+/target
+*.iml
+# Include top level code styles and inspection profile
+.idea/.*
+.idea/*.xml
+.idea/libraries
+.data/
+/.idea/

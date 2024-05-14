@@ -20,9 +20,6 @@ $ mvn clean install
 
 3. See the output of the test
 
-Currently, the test is failing with the following error:
-```
-[ERROR]   R2dbcTest.test:47 expected:<false> but was:<null>
-```
+Currently, one test is failing.
 
 Expected behavior is that the test should pass.
